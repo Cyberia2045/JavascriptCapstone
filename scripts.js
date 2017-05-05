@@ -14,6 +14,7 @@ var splitWord = currentWord.split("");
 // DOM Variables
 
 var container = document.getElementById("main-container");
+var livesText = document.getElementById("lives-text");
 var blankWordDiv = document.createElement("div");
 
 var guessButton = document.getElementById("guess-button");
@@ -33,21 +34,25 @@ function wordGuessInit() {
 document.addEventListener("keypress", wordGuess);
 
 function wordGuess() {
+	var correct = false;
 	lettersGuessed.push(event.key);
-	console.log(event.key);
 	var lastLetter = lettersGuessed.slice(-1)[0];
 	
 	for (var i=0; i < currentWord.length; i++) {
 		if (currentWord[i] === lastLetter) {
+			correct = true;
 			splitWord[i] = lastLetter;
 			document.getElementsByClassName("main-container__space")[i].innerHTML = lastLetter;
 		}
-
-		if (currentWord.length === "_ ") {
-			lives -= 1;
-			console.log(lives);
-		}
 	}
+		if (correct === false) {
+			lives -= 1;
+			livesText.innerHTML = "You have " + lives + " lives remaining.";
+		}
+
+		if (lives <= 0) {
+			livesText.innerHTML = "Game Over!";
+		}
 }
 
 
