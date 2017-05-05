@@ -30,18 +30,22 @@ function wordGuessInit() {
 	}
 }
 
-guessButton.addEventListener("click", wordGuess);
+document.addEventListener("keypress", wordGuess);
 
 function wordGuess() {
-	var wordInput = document.getElementById("guess-input").value;
-	lettersGuessed.push(wordInput);
+	lettersGuessed.push(event.key);
+	console.log(event.key);
 	var lastLetter = lettersGuessed.slice(-1)[0];
 	
 	for (var i=0; i < currentWord.length; i++) {
 		if (currentWord[i] === lastLetter) {
-			console.log(lastLetter)
 			splitWord[i] = lastLetter;
 			document.getElementsByClassName("main-container__space")[i].innerHTML = lastLetter;
+		}
+
+		if (currentWord.length === "_ ") {
+			lives -= 1;
+			console.log(lives);
 		}
 	}
 }
