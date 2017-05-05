@@ -33,6 +33,13 @@
 	text-align: $center;
 }
 
+.letter-printer {
+	margin-top: 30px;
+	font-size: 1.5em;
+	text-align: $center;
+	letter-spacing: 10px;
+}
+
 @media all and (max-width: 800px) {
 	.text-container {
 		width: $full;

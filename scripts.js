@@ -15,13 +15,11 @@ var splitWord = currentWord.split("");
 
 var container = document.getElementById("main-container");
 var livesText = document.getElementById("lives-text");
-var blankWordDiv = document.createElement("div");
-
-var guessButton = document.getElementById("guess-button");
+var letterPrinter = document.getElementById("letter-printer");
+var repeatMessage = document.getElementById("repeat-message");
 var lettersGuessed = [];
 
 function wordGuessInit() {
-	blankWordDiv.classList.add("main-container__blank");
 
 	for(var i=0; i < splitWord.length; i++) {
 		var wordGuessDiv = document.createElement("div");
@@ -34,6 +32,12 @@ function wordGuessInit() {
 document.addEventListener("keypress", wordGuess);
 
 function wordGuess() {
+		
+	if (lettersGuessed.indexOf(event.key) > -1) {
+		console.log("You have already guessed this letter!")
+		return
+	}
+
 	var correct = false;
 	lettersGuessed.push(event.key);
 	var lastLetter = lettersGuessed.slice(-1)[0];
@@ -48,10 +52,13 @@ function wordGuess() {
 		if (correct === false) {
 			lives -= 1;
 			livesText.innerHTML = "You have " + lives + " lives remaining.";
+			var letterPrinterText = document.createTextNode(event.key);
+			letterPrinter.appendChild(letterPrinterText);
 		}
 
 		if (lives <= 0) {
 			livesText.innerHTML = "Game Over!";
+			location.reload()
 		}
 }
 
