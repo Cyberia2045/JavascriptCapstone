@@ -10,6 +10,8 @@ var wordBank = [ "quasar", "pulsar", "qbit", "singularity", "cosmos", "cassini",
 var lives = 5;
 var currentWord = wordBank[Math.floor(Math.random() * wordBank.length)];
 var splitWord = currentWord.split("");
+var blankSpaceArray = Array(currentWord.length +1).join("_ ");
+var guessedWord = blankSpaceArray.split(" ")
 
 // DOM Variables
 
@@ -21,7 +23,7 @@ var lettersGuessed = [];
 function wordGuessInit() {
 
 	for(var i=0; i < splitWord.length; i++) {
-		var wordGuessDiv = document.createElement("div");
+		wordGuessDiv = document.createElement("div");
 		wordGuessDiv.innerHTML = "_ "
 		wordGuessDiv.classList.add("main-container__space");
 		container.appendChild(wordGuessDiv);
@@ -46,12 +48,8 @@ function wordGuess() {
 			correct = true;
 			splitWord[i] = lastLetter;
 			document.getElementsByClassName("main-container__space")[i].innerHTML = lastLetter;
+			guessedWord[i] = lastLetter;
 		}
-
-		if (splitWord.indexOf("_ ") === -1) {
-			console.log("You Win!");
-		}
-
 	}
 
 		if (correct === false) {
@@ -64,6 +62,10 @@ function wordGuess() {
 		if (lives <= 0) {
 			livesText.innerHTML = "Game Over!";
 			location.reload()
+		}
+
+		if (guessedWord.indexOf("_") <= -1) {
+			livesText.innerHTML = "You Win!";
 		}
 }
 
