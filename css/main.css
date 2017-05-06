@@ -1,3 +1,49 @@
+* {
+  box-sizing: border-box; }
 
+body {
+  background-color: teal;
+  font-family: "Futura";
+  color: white; }
+
+.main-heading,
+.sub-heading {
+  text-align: center; }
+
+.text-container {
+  width: 50%;
+  margin: 0 auto; }
+
+.main-container {
+  text-align: center;
+  font-size: 2em;
+  margin-top: 50px;
+  width: 50%;
+  max-width: 400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around; }
+
+.input-container {
+  width: 240px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  justify-content: space-around; }
+
+.lives-text {
+  margin-top: 30px;
+  font-size: 1.5em;
+  text-align: center; }
+
+.letter-printer {
+  margin-top: 30px;
+  font-size: 1.5em;
+  text-align: center;
+  letter-spacing: 10px; }
+
+@media all and (max-width: 800px) {
+  .text-container {
+    width: 100%; } }
 
 /*# sourceMappingURL=main.css.map */
