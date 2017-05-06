@@ -16,7 +16,6 @@ var splitWord = currentWord.split("");
 var container = document.getElementById("main-container");
 var livesText = document.getElementById("lives-text");
 var letterPrinter = document.getElementById("letter-printer");
-var repeatMessage = document.getElementById("repeat-message");
 var lettersGuessed = [];
 
 function wordGuessInit() {
@@ -34,7 +33,7 @@ document.addEventListener("keypress", wordGuess);
 function wordGuess() {
 		
 	if (lettersGuessed.indexOf(event.key) > -1) {
-		console.log("You have already guessed this letter!")
+		alert("You have already guessed this letter!")
 		return
 	}
 
@@ -48,7 +47,13 @@ function wordGuess() {
 			splitWord[i] = lastLetter;
 			document.getElementsByClassName("main-container__space")[i].innerHTML = lastLetter;
 		}
+
+		if (splitWord.indexOf("_ ") === -1) {
+			console.log("You Win!");
+		}
+
 	}
+
 		if (correct === false) {
 			lives -= 1;
 			livesText.innerHTML = "You have " + lives + " lives remaining.";
